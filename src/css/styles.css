@@ -18,3 +18,49 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+/* Стили для показа одной страны */
+.country-box__wrap {
+  display: flex;
+  align-items: center;
+}
+.country-box__image {
+  width: 25px;
+  margin-right: 15px;
+}
+.country-box__title{
+  margin: 0;
+}
+.country-box-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 25 0 0 0 ;
+}
+.country-box-list__item p {
+  margin: 10 0 0 0;
+  color: seagreen;
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Стили для показа списка стран */
+.countries-box__item {
+  display: flex;
+  align-items: center;
+
+  list-style: none;
+  margin: 10 0 0 0;
+
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: bold;
+}
+.countries-box__image {
+  width: 25px;
+  margin-right: 15px;
+}
+
+.country-list {
+  padding: 0;
+}

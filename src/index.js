@@ -16,7 +16,7 @@ const DEBOUNCE_DELAY = 300;
 refs.searchBox.addEventListener('input', debounce(onTextInput, DEBOUNCE_DELAY));
 
 function onTextInput(e) {
-    if (refs.searchBox.value.length > 1) {
+    if (refs.searchBox.value.length >= 1) {
         const searchQuery = e.target.value.trim();
         return fetchCountries(searchQuery).then(renderCountry).catch(wrongCountryName); 
     } else {
@@ -31,7 +31,7 @@ function renderCountry(countries) {
     console.log(countries);
 
     if (countries.length > 10) {
-        return Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.')
+        return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
     }
 
     if (countries.length >= 2 && countries.length <= 10) {
@@ -44,34 +44,34 @@ function renderCountry(countries) {
     }    
 };
 
-function makeMarkupBoxForOne(countries) {
+function makeMarkupBox(countries) {
     const markup = countries.map(({ flags, name }) => {
         return `
-        <li class="country-one-box__item">
-        <img src ="${flags.svg}" alt="Flag of country ${name}" class="country-one-box__image">
+        <li class="countries-box__item">
+        <img src ="${flags.svg}" alt="Flag of country ${name}" class="countries-box__image">
         ${name.common}</li>`;
     }).join('');
 
     refs.listMarkup.innerHTML = markup;
 };
 
-function makeMarkupBox(countries) {
+function makeMarkupBoxForOne(countries) {
     const markup = countries.map(({ flags, name, capital, population, languages }) => {
       
         return `
-        <div class = "country-info__wrap">
-        <img src ="${flags.svg}" alt="Flag of country ${name}" class="country-list__image">
-        <h1 class = "country-title"> ${name.common}</h1>
+        <div class = "country-box__wrap">
+            <img src ="${flags.svg}" alt="Flag of country ${name}" class="country-box__image">
+            <h1 class = "country-box__title"> ${name.common}</h1>
         </div>
 
-        <ul class="country-list-info">
-            <li class="country-list-info__item">
+        <ul class="country-box-list">
+            <li class="country-box-list__item">
             <p>Capital: ${capital}</p>
             </li>
-            <li class="country-list-info__item">
+            <li class="country-box-list__item">
             <p>Population: ${population}</p>
             </li>
-            <li class="country-list-info__item">
+            <li class="country-box-list__item">
             <p>Language: ${Object.values(languages)}</p>
             </li>
         </ul>`;
